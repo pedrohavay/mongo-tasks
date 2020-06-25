@@ -16,7 +16,7 @@ ASCENDING = 1
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger('FLASK-TASKS')
+logger = logging.getLogger('MONGO-TASKS')
 """ Configure logging globally """
 
 from .jobs import Jobs
