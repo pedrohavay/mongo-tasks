@@ -30,7 +30,7 @@ class Queue(Connection):
         logger.info(f"[Queue] Task added: {task.inserted_id}")
 
         # Return inserted '_id'
-        return task.inserted_id
+        return str(task.inserted_id)
 
     def get_queue(self, status=None, priority=None, sort_by=ASCENDING, limit=0, offset=0):
         # Init sort

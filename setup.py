@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="Mongo Tasks",
-    version="0.1.1",
+    version="0.1.2",
     author="Pedro Havay",
     author_email="pedrohavay@protonmail.com",
     description="A Python Project to manage tasks queue using MongoDB.",
