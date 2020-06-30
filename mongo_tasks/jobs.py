@@ -20,6 +20,9 @@ class Jobs(Connection):
             # Registering function in list
             self.services[name] = f
 
+            # Adding standlone  mode
+            decorator._standlone = f
+
             # Logging
             logger.info(f"[Jobs] Service Registered: {name}")
 
@@ -39,6 +42,11 @@ class Jobs(Connection):
             # Returns None
             return None
 
+    @property
+    def all_services(self):
+        # Return services list
+        return [v for v in self.services.keys()]
+
     def __execute_task(self, task):
         # Get service internally
         service = self.execute(task['service'])
@@ -51,6 +59,7 @@ class Jobs(Connection):
             try:
                 # Execute service
                 result = service(*task['arguments'])
+                result = result if type(result) == dict else {}
             except Exception as error:
                 # Logging
                 logger.error(f"[Jobs] Error Task: {str(task['_id'])}")
@@ -127,6 +136,16 @@ class Jobs(Connection):
         except KeyboardInterrupt:
             # Logging
             logger.info("[Jobs] Stopping tasks listerner...")
-        except Exception:
+        except Exception as error:
             # Logging
             logger.error("[Jobs] Stopping tasks listerner...")
+
+            # Get traceback
+            traceback_str = "\n".join(traceback.format_tb(error.__traceback__))
+            
+            # Open error log
+            error_file = open("./error.log", "a")
+
+            # Write
+            error_file.write(f"\n\nError Timestamp: {datetime.now().isoformat()}\n")
+            error_file.write(traceback_str)
