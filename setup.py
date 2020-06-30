@@ -4,7 +4,7 @@ import setuptools
 # REAME Correction
 filepath = os.path.dirname(os.path.abspath(__file__))
 
-with open(f"{filepath}/README.md", "r") as fh:
+with open(f"{filepath}/README.MD", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
