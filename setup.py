@@ -1,6 +1,7 @@
 import os
 import setuptools
 
+# REAME Correction
 filepath = os.path.dirname(os.path.abspath(__file__))
 
 with open(f"{filepath}/README.md", "r") as fh:
