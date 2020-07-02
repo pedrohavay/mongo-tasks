@@ -67,6 +67,9 @@ class Jobs(Connection):
                 # Get traceback
                 traceback_str = "\n".join(traceback.format_tb(error.__traceback__))
 
+                # Adding string from exception
+                traceback_str += f"\n[Main Error]{str(error)}"
+
                 # Get exception not handled
                 result = {
                     "status": "error",
